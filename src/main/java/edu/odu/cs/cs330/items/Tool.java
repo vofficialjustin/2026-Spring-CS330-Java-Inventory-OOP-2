@@ -47,6 +47,12 @@ public class Tool extends Equippable {
         super();
 
         this.setName(src.name);
+        this.material = src.material;
+        this.durability = src.durability;
+        this.modifier = src.modifier;
+        this.modifierLevel = src.modifierLevel;
+
+        this.speed = src.speed;
 
         // Complete this function
 
@@ -87,7 +93,10 @@ public class Tool extends Equippable {
         super.name    = snr.next();
         material      = snr.next();
 
-        // Complete this function
+        durability = snr.nextInt();
+        this.speed = snr.nextInt();
+        modifier = snr.next();
+        modifierLevel = snr.nextInt();
     }
 
     /**
@@ -100,7 +109,11 @@ public class Tool extends Equippable {
 
         cpy.setName(this.name);
 
-        // Complete this function
+        cpy.material = this.material;
+        cpy.durability = this.durability;
+        cpy.speed = this.speed;
+        cpy.modifier = this.modifier;
+        cpy.modifierLevel = this.modifierLevel;
 
         return cpy;
     }
@@ -119,8 +132,10 @@ public class Tool extends Equippable {
 
         Tool rhsItem = (Tool) rhs;
 
-        // Complete this function
-        return false;
+        
+        return this.name.equals(rhsItem.name)
+            && this.material.equals(rhsItem.material)
+            && this.modifier.equals(rhsItem.modifier);
     }
 
     /**
@@ -130,8 +145,9 @@ public class Tool extends Equippable {
     @Override
     public int hashCode()
     {
-        // Complete this function
-        return -1;
+        return this.name.hashCode()
+            + this.material.hashCode()
+            + this.modifier.hashCode();
     }
 
     /**

@@ -42,7 +42,14 @@ public class Armour extends Equippable {
      */
     public Armour(Armour src)
     {
-        // Complete this function.
+        this.name = src.name;
+        this.material = src.material;
+        this.durability = src.durability;
+        this.modifier = src.modifier;
+        this.modifierLevel = src.modifierLevel;
+        this.element = src.element;
+
+        this.defense = src.defense;
     }
 
     /**
@@ -79,7 +86,12 @@ public class Armour extends Equippable {
     {
         super.name    = snr.next();
 
-        // Complete this function.
+        super.material = snr.next();
+        super.durability = snr.nextInt();
+        this.defense = snr.nextInt();
+        super.modifier = snr.next();
+        super.modifierLevel = snr.nextInt();
+        super.element = snr.next();
     }
 
     /**
@@ -88,7 +100,7 @@ public class Armour extends Equippable {
     @Override
     public Item clone()
     {
-        Armour cpy = new Armour();
+        Armour cpy = new Armour(this);
 
         // Complete this function.
 
@@ -110,9 +122,10 @@ public class Armour extends Equippable {
 
         Armour rhsItem = (Armour) rhs;
 
-        // Complete this function.
-        // Remove the placeholder return
-        return false;
+        return super.name.equals(rhsItem.name)
+            && super.material.equals(rhsItem.material)
+            && super.modifier.equals(rhsItem.modifier)
+            && super.element.equals(rhsItem.element);
     }
 
     /**
@@ -122,9 +135,11 @@ public class Armour extends Equippable {
     @Override
     public int hashCode()
     {
-        // Complete this function.
-        // Remove the placeholder return
-        return -1;
+        return super.name.hashCode()
+            + super.material.hashCode()
+            + super.modifier.hashCode()
+            + super.element.hashCode();
+
     }
 
     /**
@@ -138,6 +153,11 @@ public class Armour extends Equippable {
         return String.join(
             System.lineSeparator(),
             String.format("  Nme: %s", super.getName()),
+            String.format("  Dur: %d", super.durability),
+            String.format("  Def: %d", this.defense),
+            String.format("  Mtl: %s", super.material),
+            String.format("  Mdr: %s (Lvl %d)", super.modifier, super.modifierLevel),
+            String.format("  Emt: %s", super.element),
             ""
         );
     }
